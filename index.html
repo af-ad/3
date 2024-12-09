@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>SOOP</title>
+    <script>
+        const vid=[
+            144631913,144631915,144631917,144631919,144631921,144631933,144631935,144631937
+        ]
+
+        function gen(){
+            const seed = seedGen(vid.length);
+            const randNum = maxIdx(seed);
+            return `https://vod.sooplive.co.kr/player/${vid[randNum]}/playlist/827653`
+        }
+
+        function seedGen(num=1){
+            let array = new Uint32Array(num)
+            return window.crypto.getRandomValues(array)
+        }
+        function maxIdx(array){
+            let idx=0;
+            let max=array[0];
+            array.forEach((element,index) => {
+                if(max<element){
+                    max=element;
+                    idx=index;
+                }
+            });
+            return idx;
+        }
+
+        window.onload = function()
+        {
+            window.location.href = gen();
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>
